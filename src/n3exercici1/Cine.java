@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Cine {
 
-	Scanner sc = new Scanner(System.in);
+	private Scanner scCine = new Scanner(System.in);
 
 	private int files = 0;
 	private int seientsPerFila = 0;
@@ -38,11 +38,10 @@ public class Cine {
 	public void initiar() {
 
 		System.out.println("Quantes files té la sala de cinema : ");
-		this.files = sc.nextInt();
+		this.files = scCine.nextInt();
 
 		System.out.println("Quants seients per fila té la sala de cinema :");
-		this.seientsPerFila = sc.nextInt();
-		sc.nextLine();
+		this.seientsPerFila = scCine.nextInt();
 
 	}
 

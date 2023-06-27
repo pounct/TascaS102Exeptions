@@ -3,6 +3,7 @@ package n3exercici1;
 import java.util.ArrayList;
 
 public class GestioButaques {
+	
 
 	private static ArrayList<Butaca> butaques;
 
@@ -47,6 +48,7 @@ public class GestioButaques {
 				butacaIndex = ind;
 				butecaEncontrada = true;
 			}
+			ind++;
 
 		}
 		return butacaIndex;

@@ -1,6 +1,7 @@
 package n3exercici1;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class N3Exercici1 {
@@ -34,39 +35,44 @@ public class N3Exercici1 {
 			case 0: {
 				programaOn = false;
 				System.out.println("0.- Fin de programa.");
+				
 				break;
 			}
 			case 1: {
 				System.out.println("1.- Les butaques reservades.");
 				butaquesReservades(cine);
+				
 				break;
 			}
 			case 2: {
 				System.out.println("2.- Mostrar les butaques reservades per una persona.");
 				butaquesReservadesPerUnaPersona(cine);
+				
 				break;
 			}
 			case 3: {
 				System.out.println("3.- Reservar una butaca.");
 				reservarButaca(cine);
+				
 				break;
 			}
 			case 4: {
-				System.out.println("4.- Anul·lar la reserva d’una butaca.)");
+				System.out.println("4.- Anul·lar la reserva d’una butaca.");
 				anullarReservaButaca(cine);
+				
 				break;
 			}
 			case 5: {
 				System.out.println("5.- Anul·lar totes les reserves d’una persona.");
 				anullarTotesReservesPersona(cine);
-
+				
 				break;
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + opcion);
 			}
 		}
-		sc.close();
+		//sc.close();
 
 	}
 
@@ -82,36 +88,46 @@ public class N3Exercici1 {
 
 	}
 
-	private static String anullarTotesReservesPersona(Cine cine) {
+	private static void anullarTotesReservesPersona(Cine cine) {
 		System.out.println("entrar una persona: ");
+		sc.nextLine();
 		String persona = sc.nextLine();
-		ArrayList<Butaca> butaques = cine.getGestioButaques().getButaques();
+		//ArrayList<Butaca> butaques = cine.getGestioButaques().getButaques();
 		boolean personaEncontrada = false;
-		for (Butaca buteca : butaques) {
-			if (buteca.getPersona() == persona) {
-				butaques.remove(buteca);
+		
+		ListIterator<Butaca> listIterator = cine.getGestioButaques().getButaques().listIterator();
+		while (listIterator.hasNext()) {
+			
+			if (listIterator.next().getPersona().equalsIgnoreCase(persona)) {
+				listIterator.remove();
 				personaEncontrada = true;
 			}
 
 		}
+		
 		if (personaEncontrada) {
-			return "totes les reserves de " + persona + " anuladas";
+			System.out.println("totes les reserves de " + persona + " anuladas");
 		} else {
-			return persona + " no esta en la aplicacion";
+			System.out.println(persona + " no esta en la aplicacion");
 		}
 
 	}
 
-	private static String anullarReservaButaca(Cine cine) throws ExcepcioButacaLliure {
+	private static void anullarReservaButaca(Cine cine) throws ExcepcioButacaLliure {
 
 		System.out.println("Dades Butaca. ");
 		System.out.println("entrar fila: ");
 		int fila = sc.nextInt();
 		System.out.println("entrar seient: ");
 		int seient = sc.nextInt();
-		cine.getGestioButaques().eliminarButaca(fila, seient);
+		try {
+			cine.getGestioButaques().eliminarButaca(fila, seient);
+			System.out.println("Anulacion de Reserva hecha");
+		} catch (ExcepcioButacaLliure e) {
+			System.out.println(e.getMessage());
+		}
 
-		return "Anulacion de Reserva hecha";
+		
 	}
 
 	private static void reservarButaca(Cine cine) throws ExcepcioButacaOcupada {
@@ -147,6 +163,7 @@ public class N3Exercici1 {
 
 		}
 		if (butaques.size() > 0) {
+			System.out.println("Butaques Reservades per " + persona);
 			for (Butaca butaca : butaques) {
 				System.out.println(butaca);
 			}

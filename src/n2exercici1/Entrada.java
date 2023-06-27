@@ -1,10 +1,9 @@
 package n2exercici1;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
+
 
 public class Entrada {
-	Scanner sc = new Scanner(System.in);
 
 	// Mètodes a implantar capturant l’excepció de la classe InputMismatchException:
 
@@ -16,8 +15,10 @@ public class Entrada {
 			byteALLegir = Byte.parseByte(missatge);
 
 		} catch (InputMismatchException e) {
-			System.out.println(e);
+			System.out.println("error to read Byte");
+			System.out.println(e.getMessage());
 		}
+		
 		// }
 		return byteALLegir;
 
@@ -31,7 +32,8 @@ public class Entrada {
 			intALLegir = Integer.parseInt(missatge);
 
 		} catch (InputMismatchException e) {
-			System.out.println(e);
+			System.out.println("error to read Int");
+			System.out.println(e.getMessage());
 		}
 
 		return intALLegir;
@@ -44,7 +46,8 @@ public class Entrada {
 			floatALLegir = Float.parseFloat(missatge);
 
 		} catch (InputMismatchException e) {
-			System.out.println(e);
+			System.out.println("error to read Float");
+			System.out.println(e.getMessage());
 		}
 
 		return floatALLegir;
@@ -57,7 +60,8 @@ public class Entrada {
 			floatALLegir = Double.parseDouble(missatge);
 
 		} catch (InputMismatchException e) {
-			System.out.println(e);
+			System.out.println("error to read Double");
+			System.out.println(e.getMessage());
 		}
 
 		return floatALLegir;
@@ -70,10 +74,12 @@ public class Entrada {
 		char charALLegir = 0;
 
 		try {
-			charALLegir = missatge.charAt(1);
+			charALLegir = missatge.charAt(0);
+			System.out.println("char : "+ charALLegir);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("error to read char");
+			System.out.println(e.getMessage());
 		}
 
 		return charALLegir;
@@ -86,7 +92,8 @@ public class Entrada {
 			stringALLegir = missatge.toString();
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("error to read String");
+			System.out.println(e.getMessage());
 		}
 
 		return stringALLegir;
@@ -99,18 +106,23 @@ public class Entrada {
 		Boolean booleanALLegir = null;
 
 		try {
-			if (missatge.toLowerCase() == "s") {
-				
-				booleanALLegir = true;
-				
-			} else if (missatge.toLowerCase() == "n") {
-				
-				booleanALLegir = false;
+			if (missatge.toLowerCase().equals("s") ) {
 
+				booleanALLegir = true;
+				System.out.println("SiNo : "+missatge.toLowerCase());
+
+			} else if (missatge.toLowerCase().equals("n")) {
+
+				booleanALLegir = false;
+				System.out.println("SiNo : "+missatge.toLowerCase());
+
+			} else if (booleanALLegir==null){
+				throw new Exception("La entrada debe ser 's' o 'n'");
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("error to read Sino");
+			System.out.println(e.getMessage());
 		}
 
 		return booleanALLegir;
